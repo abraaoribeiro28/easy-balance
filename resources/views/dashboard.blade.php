@@ -4,51 +4,9 @@
             <div class="absolute inset-0 bg-grid-slate-100" style="background-position: 10px 10px;"></div>
             <div class="relative rounded-xl overflow-auto">
                 <div class="grid grid-cols-3 gap-4 text-white font-bold leading-6">
-                    <div class="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-300">
-                        <div class="flex justify-between">
-                            <h1>Entradas</h1>
-                            <svg xmlns="http://www.w3.org/2000/svg" id="arrow-circle-down" viewBox="0 0 24 24"
-                                width="24" height="24">
-                                <path
-                                    d="M12,24A12,12,0,1,0,0,12,12.013,12.013,0,0,0,12,24ZM6.293,9.465,9.879,5.879h0a3,3,0,0,1,4.243,0l3.585,3.586.024.025a1,1,0,1,1-1.438,1.389L13,7.586,13.007,18a1,1,0,0,1-2,0L11,7.587,7.707,10.879A1,1,0,1,1,6.293,9.465Z"
-                                    fill="rgb(165 180 252 / .5)" />
-                            </svg>
-                        </div>
-                        <div class="py-3 text-2xl">
-                            R$ 10.000,00
-                        </div>
-                    </div>
-                    <div class="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-300">
-                        <div class="flex justify-between">
-                            <h1>Saídas</h1>
-                            <?xml version="1.0" encoding="UTF-8"?>
-                            <svg xmlns="http://www.w3.org/2000/svg" id="arrow-circle-down" viewBox="0 0 24 24"
-                                width="24" height="24" width="512" height="512">
-                                <path
-                                    d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm5.707,14.535-3.586,3.586h0a3,3,0,0,1-4.243,0L6.293,14.535l-.024-.025a1,1,0,1,1,1.438-1.389L11,16.414,10.993,6a1,1,0,0,1,2,0L13,16.413l3.293-3.292a1,1,0,1,1,1.414,1.414Z"
-                                    fill="rgb(165 180 252 / .5)" />
-                            </svg>
-                        </div>
-                        <div class="py-3 text-2xl">
-                            R$ 6.000,00
-                        </div>
-                    </div>
-                    <div class="p-4 rounded-lg bg-indigo-300 dark:bg-indigo-800 dark:text-indigo-300">
-                        <div class="flex justify-between">
-                            <h1>Saldo atual</h1>
-                            <i class="fi fi-br-dollar"></i>
-                            <?xml version="1.0" encoding="UTF-8"?>
-                            <svg xmlns="http://www.w3.org/2000/svg" id="arrow-circle-down" viewBox="0 0 24 24" width="24" height="24"
-                                width="512" height="512">
-                                <path
-                                    d="M18.5,9.5A1.5,1.5,0,0,0,20,8V7.313A5.32,5.32,0,0,0,14.687,2H13.5V1.5a1.5,1.5,0,0,0-3,0V2H9.313A5.313,5.313,0,0,0,7.772,12.4l2.728.746V19H9.313A2.316,2.316,0,0,1,7,16.687V16a1.5,1.5,0,0,0-3,0v.687A5.32,5.32,0,0,0,9.313,22H10.5v.5a1.5,1.5,0,0,0,3,0V22h1.187a5.313,5.313,0,0,0,1.541-10.4L13.5,10.856V5h1.187A2.316,2.316,0,0,1,17,7.313V8A1.5,1.5,0,0,0,18.5,9.5Zm-3.118,4.979a2.314,2.314,0,0,1-.7,4.521H13.5V13.965ZM10.5,10.035,8.618,9.521A2.314,2.314,0,0,1,9.313,5H10.5Z"
-                                    fill="rgb(165 180 252 / .5)" />
-                            </svg>
-                        </div>
-                        <div class="py-3 text-2xl">
-                            R$ 4.000,00
-                        </div>
-                    </div>
+                    <x-card title="Entradas" money="10.000,00" icon="M12,24A12,12,0,1,0,0,12,12.013,12.013,0,0,0,12,24ZM6.293,9.465,9.879,5.879h0a3,3,0,0,1,4.243,0l3.585,3.586.024.025a1,1,0,1,1-1.438,1.389L13,7.586,13.007,18a1,1,0,0,1-2,0L11,7.587,7.707,10.879A1,1,0,1,1,6.293,9.465Z"/>
+                    <x-card title="Saídas" money="6.000,00" icon="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm5.707,14.535-3.586,3.586h0a3,3,0,0,1-4.243,0L6.293,14.535l-.024-.025a1,1,0,1,1,1.438-1.389L11,16.414,10.993,6a1,1,0,0,1,2,0L13,16.413l3.293-3.292a1,1,0,1,1,1.414,1.414Z"/>
+                    <x-card title="Saldo Atual" money="4.000,00" icon="M18.5,9.5A1.5,1.5,0,0,0,20,8V7.313A5.32,5.32,0,0,0,14.687,2H13.5V1.5a1.5,1.5,0,0,0-3,0V2H9.313A5.313,5.313,0,0,0,7.772,12.4l2.728.746V19H9.313A2.316,2.316,0,0,1,7,16.687V16a1.5,1.5,0,0,0-3,0v.687A5.32,5.32,0,0,0,9.313,22H10.5v.5a1.5,1.5,0,0,0,3,0V22h1.187a5.313,5.313,0,0,0,1.541-10.4L13.5,10.856V5h1.187A2.316,2.316,0,0,1,17,7.313V8A1.5,1.5,0,0,0,18.5,9.5Zm-3.118,4.979a2.314,2.314,0,0,1-.7,4.521H13.5V13.965ZM10.5,10.035,8.618,9.521A2.314,2.314,0,0,1,9.313,5H10.5Z"/>
                 </div>
             </div>
         </div>
