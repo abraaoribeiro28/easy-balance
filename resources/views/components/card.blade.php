@@ -6,6 +6,6 @@
         </svg>
     </div>
     <div class="py-3 text-2xl">
-        R$ {{ $money ? $money : "0,00" }}
+        R$ {{ $money ? number_format($money, 2, ',', '.') : "0,00" }}
     </div>
 </div>

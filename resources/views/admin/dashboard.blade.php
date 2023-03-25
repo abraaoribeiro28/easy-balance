@@ -14,6 +14,27 @@
 
     <div class="max-w-7xl mx-auto py-12 py-6 px-4 sm:px-6 lg:px-8">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <form class="mb-6">
+                <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <input type="search" id="search"
+                        class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Pesquisar transação" required>
+                    <button type="submit"
+                        class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Enviar
+                    </button>
+                </div>
+            </form>
+
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     {{-- <tr>
@@ -32,53 +53,53 @@
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
+                            Transação 001
                         </th>
                         <td class="px-6 py-4">
-                            Silver
+                            Concluída
                         </td>
                         <td class="px-6 py-4">
-                            Laptop
+                            Saque
                         </td>
                         <td class="px-6 py-4">
-                            $2999
+                            R$ 5000,00
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            -
                         </td>
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Microsoft Surface Pro
+                            Transação 002
                         </th>
                         <td class="px-6 py-4">
-                            White
+                            Concluída
                         </td>
                         <td class="px-6 py-4">
-                            Laptop PC
+                            Saque
                         </td>
                         <td class="px-6 py-4">
-                            $1999
+                            R$ 2000,00
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            -
                         </td>
                     </tr>
                     <tr class="bg-white dark:bg-gray-800">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Magic Mouse 2
+                            Transação 003
                         </th>
                         <td class="px-6 py-4">
-                            Black
+                            Pendente
                         </td>
                         <td class="px-6 py-4">
-                            Accessories
+                            Depósito
                         </td>
                         <td class="px-6 py-4">
-                            $99
+                            R$ 1250,00
                         </td>
                         <td class="px-6 py-4">
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                            -
                         </td>
                     </tr>
                 </tbody>

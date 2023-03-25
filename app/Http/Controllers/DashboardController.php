@@ -9,7 +9,7 @@ class DashboardController extends Controller
     public function index()
     {
         $balance = auth()->user()->balance;
-        $amount = $balance ? $balance : 0;
+        $amount = $balance ? $balance->amount : 0;
         return view('admin.dashboard', compact('amount'));
     }
 }

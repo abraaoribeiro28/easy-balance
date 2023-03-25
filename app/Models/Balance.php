@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use PhpParser\Node\Expr\Cast\Array_;
-// use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 
 class Balance extends Model
 {
@@ -13,13 +12,21 @@ class Balance extends Model
 
     public $timestamps = false;
 
-    // public function deposit(float $value) : Array_
-    // {
-    //     DB::transaction(function () {
+    public function deposit(float $value) : Array
+    {
+        $this->amount += number_format($value, 2, '.', '');
+        $deposit = $this->save();
 
-    //     }, 2);
-    // }
+        if ($deposit) {
+            return [
+                'success' => true,
+                'message' => 'Depósito realizado com sucesso.'
+            ];
+        }
 
-
-    
+        return [
+            'success' => false,
+            'message' => 'Falha ao efetuar depósito.'
+        ];
+    }
 }
