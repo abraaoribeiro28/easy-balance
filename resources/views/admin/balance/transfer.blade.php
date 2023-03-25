@@ -63,9 +63,11 @@
                                     </label>
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none 
                                         dark:text-white">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor"
+                                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                            </path>
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
                                         </svg>
                                     </div>
@@ -75,7 +77,7 @@
                                         dark:focus:border-blue-500" name="value" aria-label="Valor do saque"
                                         placeholder="E-mail" type="text">
                                 </div>
-                                <button type="button" class="formkit-submit">
+                                <button type="button" id="search-user" class="formkit-submit">
                                     <span
                                         class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Buscar
@@ -132,4 +134,5 @@
             </aside>
         </div>
     </div>
+    @section('scripts') <script src="{{asset('assets/js/search-user.js')}}"></script> @endsection
 </x-app-layout>
