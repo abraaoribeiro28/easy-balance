@@ -27,4 +27,15 @@ class BalanceController extends Controller
             ->route('dashboard')
             ->with('error', $response['message']);
     }
+
+    public function withdraw()
+    {
+        return view('admin.balance.withdraw');
+    }
+
+    public function withdrawStore(MoneyFormRequest $request)
+    {
+        dd($request->all());
+        return view('admin.balance.withdraw');
+    }
 }
