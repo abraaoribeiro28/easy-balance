@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MoneyFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Balance;
 
@@ -12,7 +13,7 @@ class BalanceController extends Controller
         return view('admin.balance.deposit');
     }
 
-    public function depositStore(Request $request)
+    public function depositStore(MoneyFormRequest $request)
     {
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->value);
