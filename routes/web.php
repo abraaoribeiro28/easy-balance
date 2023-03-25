@@ -19,6 +19,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/deposit/store', [BalanceController::class, 'depositStore'])->name('deposit.store');
     Route::get('/withdraw', [BalanceController::class, 'withdraw'])->name('withdraw');
     Route::post('/withdraw/store', [BalanceController::class, 'withdrawStore'])->name('withdraw.store');
+    Route::get('/transfer', [BalanceController::class, 'transfer'])->name('transfer');
+    Route::post('/transfer/store', [BalanceController::class, 'confirmTransfer'])->name('transfer.store');
 });
 
 
