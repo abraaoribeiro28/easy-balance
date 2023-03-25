@@ -12,7 +12,7 @@ class Balance extends Model
 
     public $timestamps = false;
 
-    public function deposit(float $value) : Array
+    public function deposit(float $value): array
     {
         DB::beginTransaction();
 
@@ -32,14 +32,51 @@ class Balance extends Model
             DB::commit();
             return [
                 'success' => true,
-                'message' => 'Depósito realizado com sucesso.'
+                'message' => 'Depósito realizado com sucesso!'
             ];
         }
-        
+
         DB::rollBack();
         return [
             'success' => false,
-            'message' => 'Falha ao efetuar depósito.'
+            'message' => 'Falha ao efetuar depósito!'
+        ];
+    }
+
+    public function withdraw(float $value): array
+    {
+        if ($this->amount < $value)
+            return [
+                'success' => false,
+                'message' => 'Saldo insuficiente!'
+            ];
+
+        DB::beginTransaction();
+
+        $totalBefore = $this->amount;
+        $this->amount -= number_format($value, 2, '.', '');
+        $withdraw = $this->save();
+
+        $historic = auth()->user()->historics()->create([
+            'type' => 'O',
+            'amount' => $value,
+            'total_before' => $totalBefore,
+            'total_after' => $this->amount,
+            'date' => date('Ymd')
+        ]);
+
+        if ($withdraw && $historic) {
+            DB::commit();
+            return [
+                'success' => true,
+                'message' => 'Saque realizado com sucesso!'
+            ];
+        }
+
+        DB::rollBack();
+        return [
+            'success' => false,
+            'message' => 'Falha ao efetuar o saque!'
         ];
     }
 }

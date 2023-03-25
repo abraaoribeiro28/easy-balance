@@ -18,10 +18,10 @@ class BalanceController extends Controller
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->value);
 
-        if($response['success'])
+        if ($response['success'])
             return redirect()
-                    ->route('dashboard')
-                    ->with('success', $response['message']);
+                ->route('dashboard')
+                ->with('success', $response['message']);
 
         return redirect()
             ->route('dashboard')
@@ -35,7 +35,16 @@ class BalanceController extends Controller
 
     public function withdrawStore(MoneyFormRequest $request)
     {
-        dd($request->all());
-        return view('admin.balance.withdraw');
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->withdraw($request->value);
+
+        if ($response['success'])
+            return redirect()
+                ->route('dashboard')
+                ->with('success', $response['message']);
+
+        return redirect()
+            ->route('dashboard')
+            ->with('error', $response['message']);
     }
 }
