@@ -21,6 +21,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/withdraw/store', [BalanceController::class, 'withdrawStore'])->name('withdraw.store');
     Route::get('/transfer', [BalanceController::class, 'transfer'])->name('transfer');
     Route::post('/transfer/store', [BalanceController::class, 'confirmTransfer'])->name('transfer.store');
+    Route::post('/transfer/search-users', [BalanceController::class, 'getUsers']);
 });
 
 

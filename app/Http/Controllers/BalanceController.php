@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MoneyFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Balance;
+use App\Models\User;
 
 class BalanceController extends Controller
 {
@@ -56,5 +57,13 @@ class BalanceController extends Controller
     public function confirmTransfer(Request $request)
     {
         dd($request->all());
+    }
+
+    public function getUsers(Request $request)
+    {
+        $user = User::select(['id', 'name', 'image_path'])
+            ->where('email', $request->email)->get();
+
+        return response()->json($user);
     }
 }
