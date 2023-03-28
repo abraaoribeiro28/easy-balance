@@ -11,24 +11,23 @@ async function getUsers() {
 
     if (!validateEmail(email.value)) {
         document.querySelector(".box-alerts").innerHTML = alert;
-        document.querySelector("#alert-border-2 .text-alert").innerHTML = "Informe um e-mail válido";
+        document.querySelector("#alert-border-2 .text-alert").innerHTML =
+            "Informe um e-mail válido";
         return false;
     }
 
     activeAnimation();
 
     const result = await request({ email: email.value });
-    
-    removeAnimation();
-
     if (result.length == 0) {
         document.querySelector(".box-alerts").innerHTML = alert;
         document.querySelector("#alert-border-2 .text-alert").innerHTML =
             "Nenhum usuário encontrado";
         return false;
     }
-
+    
     dropdown.classList.remove("hidden");
+    removeAnimation();
     list(result);
 }
 
@@ -69,8 +68,13 @@ function list(users) {
         const button = document.createElement("button");
         const img = document.createElement("img");
 
-        img.setAttribute("src", user.image_path);
-        img.setAttribute("class", "mr-3");
+        if (user.image_path != null) {
+            img.setAttribute("src", `storage/${user.image_path}`);
+        } else {
+            img.setAttribute("src", "images/user.png");
+        }
+
+        img.setAttribute("class", "w-10 h-10 rounded-full mr-3");
 
         button.setAttribute(
             "class",
@@ -80,9 +84,17 @@ function list(users) {
         button.appendChild(img);
         button.innerHTML += user.name;
 
+        button.addEventListener("click", () => selectuser(user.id));
+
         li.appendChild(button);
         ul.appendChild(li);
     });
+}
+
+function selectuser(id) {
+    document.querySelector("#id").value = id;
+    dropdown.classList.add("hidden");
+    ul.innerHTML = "";
 }
 
 const alert = `<div id="alert-border-2"

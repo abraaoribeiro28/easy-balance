@@ -25,7 +25,6 @@ class DashboardController extends Controller
             return $carry + $number;
         });
 
-
         return view('admin.dashboard', compact('amount', 'inputs', 'exits'));
     }
 }

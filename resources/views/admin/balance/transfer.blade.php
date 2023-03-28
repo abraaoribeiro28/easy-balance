@@ -63,6 +63,7 @@
                 <form action="{{ route('transfer.store') }}"
                     class="seva-form formkit-form flex flex-col md:flex-row gap-x-8" method="post">
                     @csrf
+                    <input type="hidden" name="id" id="id" value="">
                     {{-- Destinatário --}}
                     <div class="w-3/6 relative">
                         <h3 class="mb-2 text-xl font-medium text-gray-900 dark:text-white">Destinatário</h3>
@@ -116,14 +117,6 @@
                             <span class="text-white block text-center py-2 border-b">Selecione o usuário</span>
                             <ul id="user-list" class="max-h-48 py-2 overflow-y-auto text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownUsersButton">
-                                {{-- <li>
-                                    <button type="button"
-                                        class="flex items-center w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        <img class="w-6 h-6 mr-2 rounded-full"
-                                            src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
-                                        Jese Leos
-                                    </button>
-                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -134,6 +127,7 @@
                             <span class="text-sm font-medium text-gray-900 dark:text-gray-300">
                                 Deseja receber e-mail confirmando sua tranferência?
                             </span>
+                            
                             <label class="relative cursor-pointer ml-3">
                                 <input type="checkbox" value="true" name="sendEmail" class="sr-only peer">
                                 <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800
