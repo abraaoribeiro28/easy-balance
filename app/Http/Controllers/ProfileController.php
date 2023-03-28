@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -30,6 +32,13 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $extension = $request->image->getClientOriginalExtension();
+            $name = auth()->user()->name."-".uniqid(date('HisYmd')).".".$extension;
+            $upload = $request->image->storeAs('users', $name);
+            $request->user()->image_path = $upload;
         }
 
         $request->user()->save();
