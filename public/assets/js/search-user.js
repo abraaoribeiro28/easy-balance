@@ -2,33 +2,47 @@ const ul = document.querySelector("#user-list");
 const dropdown = document.querySelector("#dropdown-list-users");
 const email = document.querySelector("#email");
 const buttonSearch = document.querySelector("#search-user");
+const buttonConfirm = document.querySelector("#confirm-value");
 
 buttonSearch.onclick = getUsers;
+buttonConfirm.onclick = setValue;
 
 async function getUsers() {
     dropdown.classList.add("hidden");
     ul.innerHTML = "";
+    removeErrorMessage();
 
     if (!validateEmail(email.value)) {
-        document.querySelector(".box-alerts").innerHTML = alert;
-        document.querySelector("#alert-border-2 .text-alert").innerHTML =
-            "Informe um e-mail válido";
+        errorMessage("Informe um e-mail válido.");
         return false;
     }
 
     activeAnimation();
-
     const result = await request({ email: email.value });
+    removeAnimation();
+
     if (result.length == 0) {
-        document.querySelector(".box-alerts").innerHTML = alert;
-        document.querySelector("#alert-border-2 .text-alert").innerHTML =
-            "Nenhum usuário encontrado";
+        errorMessage("Nenhum usuário encontrado.");
         return false;
     }
-    
+
     dropdown.classList.remove("hidden");
-    removeAnimation();
     list(result);
+}
+
+function setValue() {
+    removeErrorMessage();
+    const idUser = document.querySelector("#id").value;
+    const value = document.querySelector("#value-withdraw").value;
+    if (idUser == "") {
+        errorMessage("Selecione um destinatário.");
+        return false;
+    } else if (value == "") {
+        errorMessage("Insira um valor.");
+        return false;
+    }
+    document.querySelector("#value").value = value;
+    document.querySelector("#value-transfer").innerText = value;
 }
 
 function validateEmail(email) {
@@ -84,17 +98,31 @@ function list(users) {
         button.appendChild(img);
         button.innerHTML += user.name;
 
-        button.addEventListener("click", () => selectuser(user.id));
+        button.addEventListener("click", () => selectuser(user));
 
         li.appendChild(button);
         ul.appendChild(li);
     });
 }
 
-function selectuser(id) {
-    document.querySelector("#id").value = id;
+function selectuser(user) {
+    document.querySelector("#id").value = user.id;
+    document.querySelector("#image-user").src = "storage/" + user.image_path;
+    document.querySelector("#nome-user").innerText = user.name;
+    document.querySelector("#email-user").innerText = user.email;
+    document.querySelector("#user-information").classList.remove("hidden");
+    buttonConfirm.removeAttribute("disabled");
     dropdown.classList.add("hidden");
     ul.innerHTML = "";
+}
+
+function errorMessage(message) {
+    document.querySelector(".box-alerts").innerHTML = alert;
+    document.querySelector("#alert-border-2 .text-alert").innerHTML = message;
+}
+
+function removeErrorMessage() {
+    document.querySelector(".box-alerts").innerHTML = "";
 }
 
 const alert = `<div id="alert-border-2"

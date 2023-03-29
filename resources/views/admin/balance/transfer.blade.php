@@ -1,6 +1,7 @@
 <x-app-layout>
     <style>
-        #search-user:disabled {
+        #search-user:disabled,
+        #confirm-value:disabled {
             cursor: not-allowed !important;
         }
 
@@ -60,10 +61,7 @@
             </div>
             <aside class="p-4 my-3 h-full bg-white border border-gray-200 rounded-lg shadow-md 
                 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <form action="{{ route('transfer.store') }}"
-                    class="seva-form formkit-form flex flex-col md:flex-row gap-x-8" method="post">
-                    @csrf
-                    <input type="hidden" name="id" id="id" value="">
+                <div class="seva-form formkit-form flex flex-col md:flex-row gap-x-8">
                     {{-- Destinatário --}}
                     <div class="w-3/6 relative">
                         <h3 class="mb-2 text-xl font-medium text-gray-900 dark:text-white">Destinatário</h3>
@@ -113,7 +111,8 @@
                                 </button>
                             </div>
                         </div>
-                        <div id="dropdown-list-users" class="bg-white rounded-lg shadow w-60 dark:bg-gray-700 absolute z-10 hidden">
+                        <div id="dropdown-list-users"
+                            class="bg-white rounded-lg shadow w-60 dark:bg-gray-700 absolute z-10 hidden">
                             <span class="text-white block text-center py-2 border-b">Selecione o usuário</span>
                             <ul id="user-list" class="max-h-48 py-2 overflow-y-auto text-gray-700 dark:text-gray-200"
                                 aria-labelledby="dropdownUsersButton">
@@ -127,7 +126,7 @@
                             <span class="text-sm font-medium text-gray-900 dark:text-gray-300">
                                 Deseja receber e-mail confirmando sua tranferência?
                             </span>
-                            
+
                             <label class="relative cursor-pointer ml-3">
                                 <input type="checkbox" value="true" name="sendEmail" class="sr-only peer">
                                 <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800
@@ -144,30 +143,76 @@
                             <div data-element="fields" data-stacked="false"
                                 class="flex items-center w-full mb-3 seva-fields formkit-fields">
                                 <div class="relative w-full mr-3 formkit-field">
-                                    <label for="value"
-                                        class="hidden block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    <label for="value-withdraw" class="hidden block mb-2 text-sm font-medium
+                                        text-gray-900 dark:text-gray-300">
                                         Valor do saque
                                     </label>
-                                    <div
-                                        class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none dark:text-white">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none 
+                                        dark:text-white">
                                         R$
                                     </div>
-                                    <input id="value"
-                                        class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        name="value" aria-label="Valor do saque" placeholder="0,00" type="text">
+                                    <input id="value-withdraw" class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                                        focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700
+                                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+                                        dark:focus:border-blue-500" name="value-withdraw" aria-label="Valor do saque"
+                                        placeholder="0,00" type="text">
                                 </div>
-                                <button data-element="submit" class="formkit-submit">
-                                    <span
-                                        class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                        Transferir
+                                <button id="confirm-value" type="button" disabled>
+                                    <span class="px-5 py-3 text-sm font-medium whitespace-nowrap text-center text-white bg-blue-700 rounded-lg
+                                        hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
+                                        dark:focus:ring-blue-800">
+                                        Confirmar
                                     </span>
                                 </button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </aside>
+            {{-- Informações do usuário --}}
+            <aside id="user-information" class="p-4 my-3 h-full bg-white border border-gray-200 rounded-lg shadow-md 
+                sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+                <form action="{{ route('transfer.store') }}"
+                    class="seva-form formkit-form flex flex-col md:flex-row gap-x-8" method="post">
+                    @csrf
+                    <input type="hidden" name="id" id="id" value="">
+                    <input type="hidden" name="value" id="value" value="">
+                    <div class="w-3/6 relative">
+                        <h3 class="mb-2 text-xl font-medium text-gray-900 dark:text-white mb-4">
+                            Informações do destinatário
+                        </h3>
+
+                        <div class="flex items-center space-x-4">
+                            <img id="image-user" src="images/user.png"
+                                class="w-24 h-24 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500">
+                            <div class="font-medium dark:text-white">
+                                <div id="nome-user" class="text-lg">Usuário</div>
+                                <div id="email-user" class="text-sm text-gray-500 dark:text-gray-400">
+                                    usuario@example.com.br
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 font-medium dark:text-white mt-4">
+                            <div class="text-lg">Valor:</div>
+                            <div id="value-transfer" class="text-lg text-gray-500 dark:text-gray-400">
+                                R$ 0,00
+                            </div>
+                        </div>
+
+                        <button type="button" class="mt-5">
+                            <span class="px-5 py-3 text-sm font-medium whitespace-nowrap text-center text-white bg-blue-700 rounded-lg
+                                hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
+                                dark:focus:ring-blue-800">
+                                Transferir
+                            </span>
+                        </button>
+                    </div>
                 </form>
             </aside>
         </div>
     </div>
+
+    <div class="hidden hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-10 h-10"></div>
     @section('scripts') <script src="{{asset('assets/js/search-user.js')}}"></script> @endsection
 </x-app-layout>

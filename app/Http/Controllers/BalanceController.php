@@ -53,7 +53,7 @@ class BalanceController extends Controller
     {
         return view('admin.balance.transfer');
     }
-
+ 
     public function confirmTransfer(Request $request)
     {
         dd($request->all());
@@ -61,7 +61,7 @@ class BalanceController extends Controller
 
     public function getUsers(Request $request)
     {
-        $user = User::select(['id', 'name', 'image_path'])
+        $user = User::select(['id', 'name', 'image_path', 'email'])
             ->where('email', $request->email)->get();
 
         return response()->json($user);

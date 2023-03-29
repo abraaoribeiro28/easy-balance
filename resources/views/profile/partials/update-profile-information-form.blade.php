@@ -49,7 +49,7 @@
 
         <div class="flex items-center space-x-6">
             <div class="shrink-0">
-                <img class="h-16 w-16 object-cover rounded-full"
+                <img class="h-16 w-16 object-cover rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
                     src="storage/{{$user->image_path}}"
                     alt="Foto do perfil atual" />
             </div>
