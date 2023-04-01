@@ -19,7 +19,7 @@ class DashboardController extends Controller
         });
 
         $exitHistory = auth()->user()->historics
-            ->where('type', 'O')
+            ->whereIn('type', ['O', 'T'])
             ->pluck('amount');
         $exits = $exitHistory->reduce(function ($carry, $number) {
             return $carry + $number;

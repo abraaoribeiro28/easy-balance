@@ -30,6 +30,7 @@
     <div class="max-w-7xl mx-auto py-12 py-6 px-4 sm:px-6 lg:px-8 box-">
         <div class="relative sm:rounded-lg">
             <div class="box-alerts">
+                <x-alerts />
                 @if($errors->any())
                 @foreach ($errors->all() as $error)
                 <div id="alert-border-2"

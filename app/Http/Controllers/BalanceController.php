@@ -69,7 +69,7 @@ class BalanceController extends Controller
         return view('admin.balance.transfer');
     }
  
-    public function confirmTransfer(Request $request)
+    public function confirmTransfer(Request $request, User $user)
     {
         $request['value'] = str_replace(".", "", $request['value']);
         $request['value'] =  (float) str_replace(",", ".", $request['value']);
@@ -78,7 +78,28 @@ class BalanceController extends Controller
             'value' => 'required|numeric|min:0.01'
         ])->validate();
 
-        
+        if (!$receiver = $user->find($request->id))
+            return redirect()
+                ->back()
+                ->with('error', 'Usuário informado não foi encontrado!');
+
+        if ($receiver->id === auth()->user()->id)
+            return redirect()
+                ->back()
+                ->with('error', 'Não pode transferir para você mesmo!');
+
+        $balance = auth()->user()->balance()->firstOrCreate([]);
+        $response = $balance->transfer($request['value'], $receiver);
+
+        if ($response['success']) {
+            return redirect()
+                ->route('dashboard')
+                ->with('success', $response['message']);
+        }
+
+        return redirect()
+            ->route('dashboard')
+            ->with('error', $response['message']);
     }
 
     public function getUsers(Request $request)
