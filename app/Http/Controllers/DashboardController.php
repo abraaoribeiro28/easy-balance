@@ -25,6 +25,11 @@ class DashboardController extends Controller
             return $carry + $number;
         });
 
-        return view('admin.dashboard', compact('amount', 'inputs', 'exits'));
+        $historics = auth()->user()->historics()
+            ->with('userReceiver')
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.dashboard', compact('amount', 'inputs', 'exits', 'historics'));
     }
 }

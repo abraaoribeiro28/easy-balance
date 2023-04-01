@@ -56,57 +56,35 @@
                     </tr> --}}
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Transação 001
-                        </th>
-                        <td class="px-6 py-4">
-                            Concluída
-                        </td>
-                        <td class="px-6 py-4">
-                            Saque
-                        </td>
-                        <td class="px-6 py-4">
-                            R$ 5000,00
-                        </td>
-                        <td class="px-6 py-4">
-                            -
-                        </td>
-                    </tr>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Transação 002
-                        </th>
-                        <td class="px-6 py-4">
-                            Concluída
-                        </td>
-                        <td class="px-6 py-4">
-                            Saque
-                        </td>
-                        <td class="px-6 py-4">
-                            R$ 2000,00
-                        </td>
-                        <td class="px-6 py-4">
-                            -
-                        </td>
-                    </tr>
-                    <tr class="bg-white dark:bg-gray-800">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Transação 003
-                        </th>
-                        <td class="px-6 py-4">
-                            Pendente
-                        </td>
-                        <td class="px-6 py-4">
-                            Depósito
-                        </td>
-                        <td class="px-6 py-4">
-                            R$ 1250,00
-                        </td>
-                        <td class="px-6 py-4">
-                            -
-                        </td>
-                    </tr>
+                    <style>
+                        .type-I{
+                            color: rgb(74 222 128) !important;
+                        }
+                        .type-O, .type-T{
+                            color: rgb(248 113 113) !important;
+                        }
+                    </style>
+                    @forelse ($historics as $historic)
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                Transação #{{ $historic->id }}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ $historic->date }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $historic->type($historic->type) }}
+                            </td>
+                            <td class="px-6 py-4 type-{{ $historic->type}}">
+                                R$ {{ number_format($historic->amount, 2, ',', '.') }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $historic->user_id_transaction ? $historic->userReceiver->name : '-' }}
+                            </td>
+                        </tr>
+                    @empty
+                        
+                    @endforelse
                 </tbody>
             </table>
         </div>
