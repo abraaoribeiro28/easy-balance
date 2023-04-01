@@ -42,7 +42,7 @@ function setValue() {
         return false;
     }
     document.querySelector("#value").value = value;
-    document.querySelector("#value-transfer").innerText = value;
+    document.querySelector("#value-transfer").innerText = 'R$ ' + value;
 }
 
 function validateEmail(email) {

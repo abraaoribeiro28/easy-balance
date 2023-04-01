@@ -6,6 +6,7 @@ use App\Http\Requests\MoneyFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Balance;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class BalanceController extends Controller
 {
@@ -14,8 +15,15 @@ class BalanceController extends Controller
         return view('admin.balance.deposit');
     }
 
-    public function depositStore(MoneyFormRequest $request)
+    public function depositStore(Request $request)
     {
+        $request['value'] = str_replace(".", "", $request['value']);
+        $request['value'] =  (float) str_replace(",", ".", $request['value']);
+
+        Validator::make($request->all(), [
+            'value' => 'required|numeric|min:0.01'
+        ])->validate();
+
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->deposit($request->value);
 
@@ -34,8 +42,15 @@ class BalanceController extends Controller
         return view('admin.balance.withdraw');
     }
 
-    public function withdrawStore(MoneyFormRequest $request)
+    public function withdrawStore(Request $request)
     {
+        $request['value'] = str_replace(".", "", $request['value']);
+        $request['value'] =  (float) str_replace(",", ".", $request['value']);
+
+        Validator::make($request->all(), [
+            'value' => 'required|numeric|min:0.01'
+        ])->validate();
+
         $balance = auth()->user()->balance()->firstOrCreate([]);
         $response = $balance->withdraw($request->value);
 
@@ -56,7 +71,14 @@ class BalanceController extends Controller
  
     public function confirmTransfer(Request $request)
     {
-        dd($request->all());
+        $request['value'] = str_replace(".", "", $request['value']);
+        $request['value'] =  (float) str_replace(",", ".", $request['value']);
+
+        Validator::make($request->all(), [
+            'value' => 'required|numeric|min:0.01'
+        ])->validate();
+
+        
     }
 
     public function getUsers(Request $request)

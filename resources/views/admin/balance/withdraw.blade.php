@@ -91,4 +91,11 @@
             </aside>
         </div>
     </div>
+
+    @section('scripts')
+        <script src="{{asset('assets/js/vanilla-masker.min.js')}}"></script>
+        <script>
+            VMasker(document.querySelector("#value")).maskMoney();
+        </script>
+    @endsection
 </x-app-layout>

@@ -170,7 +170,7 @@
                 </div>
             </aside>
             {{-- Informações do usuário --}}
-            <aside id="user-information" class="p-4 my-3 h-full bg-white border border-gray-200 rounded-lg shadow-md 
+            <aside id="user-information" class="hidden p-4 my-3 h-full bg-white border border-gray-200 rounded-lg shadow-md 
                 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <form action="{{ route('transfer.store') }}"
                     class="seva-form formkit-form flex flex-col md:flex-row gap-x-8" method="post">
@@ -200,7 +200,7 @@
                             </div>
                         </div>
 
-                        <button type="button" class="mt-5">
+                        <button type="submit" class="mt-5">
                             <span class="px-5 py-3 text-sm font-medium whitespace-nowrap text-center text-white bg-blue-700 rounded-lg
                                 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700
                                 dark:focus:ring-blue-800">
@@ -212,7 +212,12 @@
             </aside>
         </div>
     </div>
-
     <div class="hidden hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white w-10 h-10"></div>
-    @section('scripts') <script src="{{asset('assets/js/search-user.js')}}"></script> @endsection
+    @section('scripts') 
+        <script src="{{asset('assets/js/search-user.js')}}"></script>
+        <script src="{{asset('assets/js/vanilla-masker.min.js')}}"></script>
+        <script>
+            VMasker(document.querySelector("#value-withdraw")).maskMoney();
+        </script>
+    @endsection
 </x-app-layout>
