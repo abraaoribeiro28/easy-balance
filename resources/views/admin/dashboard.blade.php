@@ -42,18 +42,23 @@
 
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    {{-- <tr>
+                    <tr>
                         <th scope="col" class="px-6 py-3">
+                            ID - Transação
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Data
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Tipo
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Valor
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Destinatário
                         </th>
-                    </tr> --}}
+                    </tr>
                 </thead>
                 <tbody>
                     <style>
@@ -83,7 +88,11 @@
                             </td>
                         </tr>
                     @empty
-                        
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                            <th scope="row" colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                                você ainda não realizou nenhuma transação
+                            </th>
+                        </tr>
                     @endforelse
                 </tbody>
             </table>
