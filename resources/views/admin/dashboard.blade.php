@@ -40,62 +40,64 @@
                 </div>
             </form>
 
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID - Transação
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Data
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Tipo
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Valor
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Destinatário
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <style>
-                        .type-I{
-                            color: rgb(74 222 128) !important;
-                        }
-                        .type-O, .type-T{
-                            color: rgb(248 113 113) !important;
-                        }
-                    </style>
-                    @forelse ($historics as $historic)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                Transação #{{ $historic->id }}
+            <div style="max-height: 500px; overflow: auto;">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID - Transação
                             </th>
-                            <td class="px-6 py-4">
-                                {{ $historic->date }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $historic->type($historic->type) }}
-                            </td>
-                            <td class="px-6 py-4 type-{{ $historic->type}}">
-                                R$ {{ number_format($historic->amount, 2, ',', '.') }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $historic->user_id_transaction ? $historic->userReceiver->name : '-' }}
-                            </td>
-                        </tr>
-                    @empty
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <th scope="row" colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
-                                você ainda não realizou nenhuma transação
+                            <th scope="col" class="px-6 py-3">
+                                Data
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tipo
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Valor
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Destinatário
                             </th>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <style>
+                            .type-I{
+                                color: rgb(74 222 128) !important;
+                            }
+                            .type-O, .type-T{
+                                color: rgb(248 113 113) !important;
+                            }
+                        </style>
+                        @forelse ($historics as $historic)
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Transação #{{ $historic->id }}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {{ $historic->date }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $historic->type($historic->type) }}
+                                </td>
+                                <td class="px-6 py-4 type-{{ $historic->type}}">
+                                    R$ {{ number_format($historic->amount, 2, ',', '.') }}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{ $historic->user_id_transaction ? $historic->userReceiver->name : '-' }}
+                                </td>
+                            </tr>
+                        @empty
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" colspan="5" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                                    você ainda não realizou nenhuma transação
+                                </th>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </x-app-layout>
